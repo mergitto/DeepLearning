@@ -9,7 +9,7 @@ def numerical_diff(f, x):
 
 
 def function_1(x):
-    return 0.01*x**2 + 0.1*x 
+    return 0.01*x**2 + 0.1*x
 
 
 def tangent_line(f, x):
@@ -17,7 +17,7 @@ def tangent_line(f, x):
     print(d)
     y = f(x) - d*x
     return lambda t: d*t + y
-     
+
 x = np.arange(0.0, 20.0, 0.1)
 y = function_1(x)
 plt.xlabel("x")
