@@ -20,3 +20,8 @@ y = step_function(x)
 plt.plot(x, y)
 plt.ylim(-0.1, 1.1) #y軸の範囲を指定
 plt.show()
+
+x = np.arange(-3.0, 3.0, 1)
+y = np.sin(x)
+plt.plot(x,y)
+plt.show()

@@ -9,6 +9,6 @@ class Hoge:
     def goodbye(self):
         print("Good Bye " + self.name + "!")
 
-m = Hoge("Hoge")
+m = Hoge("Akagi")
 m.hello()
 m.goodbye()
