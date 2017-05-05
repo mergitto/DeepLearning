@@ -1,4 +1,6 @@
 # coding: utf-8
+# 6.2.4 MNISTデータセットによる重み初期値の比較
+# 重みの初期値が違う(std = 0.01, Xavier, He)の3つの重みを用いる
 import os
 import sys
 

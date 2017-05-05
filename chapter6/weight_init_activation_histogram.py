@@ -1,4 +1,5 @@
 # coding: utf-8
+# 6.2.2 隠れ層のアクティベーション分布
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -28,8 +29,8 @@ for i in range(hidden_layer_size):
     # 初期値の値をいろいろ変えて実験しよう！
     w = np.random.randn(node_num, node_num) * 1
     # w = np.random.randn(node_num, node_num) * 0.01
-    # w = np.random.randn(node_num, node_num) * np.sqrt(1.0 / node_num)
-    # w = np.random.randn(node_num, node_num) * np.sqrt(2.0 / node_num)
+    # w = np.random.randn(node_num, node_num) * np.sqrt(1.0 / node_num) # Xavierの初期値
+    # w = np.random.randn(node_num, node_num) * np.sqrt(2.0 / node_num) # Heの初期値
 
 
     a = np.dot(x, w)

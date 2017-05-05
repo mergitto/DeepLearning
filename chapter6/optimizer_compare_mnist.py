@@ -1,4 +1,6 @@
 # coding: utf-8
+# 6.1.8 MNISTデータセットによる更新手法の比較
+
 import os
 import sys
 sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定

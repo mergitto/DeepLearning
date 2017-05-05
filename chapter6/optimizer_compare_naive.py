@@ -1,4 +1,5 @@
 # coding: utf-8
+# 6.1.7 手法毎の比較(SGD, Momentum, AdaGrad, Adam)
 import sys, os
 sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
