@@ -11,6 +11,7 @@ class TwoLayerNet:
 
     def __init__(self, input_size, hidden_size, output_size, weight_init_std = 0.01):
         # 重みの初期化
+        # input_size=入力層のニューロン数, hidden_size=隠れ層のニューロン数, output_size=出力層のニューロン数, weight_init_std=重み初期化時のガウス分布のスケール
         self.params = {}
         self.params['W1'] = weight_init_std * np.random.randn(input_size, hidden_size)
         self.params['b1'] = np.zeros(hidden_size)
@@ -18,24 +19,26 @@ class TwoLayerNet:
         self.params['b2'] = np.zeros(output_size)
 
         # レイヤの生成
-        self.layers = OrderedDict()
+        self.layers = OrderedDict() # OrderdDictは順番付きのディクショナリで追加した順番を覚えることができる
         self.layers['Affine1'] = Affine(self.params['W1'], self.params['b1'])
         self.layers['Relu1'] = Relu()
         self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
 
         self.lastLayer = SoftmaxWithLoss()
-        
+    
+    # 認識(推論)を行う xは画像のデータ
     def predict(self, x):
         for layer in self.layers.values():
             x = layer.forward(x)
-        
+
         return x
         
-    # x:入力データ, t:教師データ
+    # 損失関数の値を求める x:入力データ, t:教師データ
     def loss(self, x, t):
         y = self.predict(x)
         return self.lastLayer.forward(y, t)
     
+    # 認識精度を求める
     def accuracy(self, x, t):
         y = self.predict(x)
         y = np.argmax(y, axis=1)
@@ -44,6 +47,7 @@ class TwoLayerNet:
         accuracy = np.sum(y == t) / float(x.shape[0])
         return accuracy
         
+    # 重みパラメータに対する勾配を数値微分によって求める
     # x:入力データ, t:教師データ
     def numerical_gradient(self, x, t):
         loss_W = lambda W: self.loss(x, t)
@@ -56,6 +60,7 @@ class TwoLayerNet:
         
         return grads
         
+    # 重みパラメータに対する勾配を誤差逆伝播法によって求める
     def gradient(self, x, t):
         # forward
         self.loss(x, t)
