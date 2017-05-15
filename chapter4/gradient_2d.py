@@ -21,7 +21,6 @@ def _numerical_gradient_no_batch(f, x):
 
 
 def numerical_gradient(f, X):
-    print(X.ndim)
     if X.ndim == 1:
         return _numerical_gradient_no_batch(f, X)
     else:
@@ -57,6 +56,8 @@ if __name__ == '__main__':
     print(grad[1])
     print(grad[1])
     plt.figure()
+    # gradにマイナスをかけるのは損失関数の符号を反転させることで、
+    # 最小値を探す勾配降下法と最大値を探す勾配上昇法を探す問題は同じことになるからである
     plt.quiver(X, Y, -grad[0], -grad[1],color="#666666")
     plt.xlim([-5, 5])
     plt.ylim([-5, 5])
