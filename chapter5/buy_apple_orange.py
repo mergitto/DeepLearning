@@ -17,9 +17,13 @@ mul_tax_layer = MulLayer()
 
 # forward
 apple_price = mul_apple_layer.forward(apple, apple_num)  # (1)
+print('apple_price',apple_price)
 orange_price = mul_orange_layer.forward(orange, orange_num)  # (2)
+print('orange_price',orange_price)
 all_price = add_apple_orange_layer.forward(apple_price, orange_price)  # (3)
+print('all_price',all_price)
 price = mul_tax_layer.forward(all_price, tax)  # (4)
+print('price',price)
 
 # backward
 dprice = 1
