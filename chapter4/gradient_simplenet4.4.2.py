@@ -26,11 +26,10 @@ x = np.array([0.6, 0.9]) # 入力データ
 t = np.array([0, 0, 1]) # 正解ラベル
 
 net = simpleNet()
-print('重みパラメータ')
-print(net.W)
+print('重みパラメータ',net.W)
 
 f = lambda w: net.loss(x, t)
-print(f(x))
+print('y',f(x))
 dW = numerical_gradient(f, net.W)
 
-print(dW)
+print('勾配',dW)

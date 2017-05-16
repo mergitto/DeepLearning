@@ -15,6 +15,7 @@ def gradient_descent(f, init_x, lr=0.01, step_num=100):
 
         grad = numerical_gradient(f, x)
         x -= lr * grad
+        print('x',x)
 
     return x, np.array(x_history)
 

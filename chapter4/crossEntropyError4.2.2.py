@@ -1,4 +1,4 @@
-#2乗和誤差
+#クロスエントロピー誤差
 
 import numpy as np
 
