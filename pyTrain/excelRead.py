@@ -53,7 +53,7 @@ for col in range(sheet1.ncols):
     print('--------------------------------')
     for row in range(sheet1.nrows):
         if(row != 0):
-            print('(',row,':',col,')')
+            print('(',row,':',col,')',xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode))
             # エクセルの日付をpythonで扱えるように変換
             tstr = xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode)
             # 例: 01 (1日のこと)

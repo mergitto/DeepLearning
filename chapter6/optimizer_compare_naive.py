@@ -35,7 +35,7 @@ idx = 1
 
 for key in optimizers:
     optimizer = optimizers[key]
-    print(key)
+    #print(key)
     x_history = []
     y_history = []
     params['x'], params['y'] = init_pos[0], init_pos[1]
@@ -48,8 +48,8 @@ for key in optimizers:
         optimizer.update(params, grads)
     
 
-    print('x:',x_history)
-    print('y:',y_history)
+    #print('x:',x_history)
+    #print('y:',y_history)
     x = np.arange(-10, 10, 0.01)
     y = np.arange(-5, 5, 0.01)
     

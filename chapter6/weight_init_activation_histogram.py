@@ -27,10 +27,10 @@ for i in range(hidden_layer_size):
         x = activations[i-1]
 
     # 初期値の値をいろいろ変えて実験しよう！
-    w = np.random.randn(node_num, node_num) * 1
-    # w = np.random.randn(node_num, node_num) * 0.01
-    # w = np.random.randn(node_num, node_num) * np.sqrt(1.0 / node_num) # Xavierの初期値
-    # w = np.random.randn(node_num, node_num) * np.sqrt(2.0 / node_num) # Heの初期値
+    #w = np.random.randn(node_num, node_num) * 1
+    #w = np.random.randn(node_num, node_num) * 0.01
+    #w = np.random.randn(node_num, node_num) * np.sqrt(1.0 / node_num) # Xavierの初期値
+    w = np.random.randn(node_num, node_num) * np.sqrt(2.0 / node_num) # Heの初期値
 
 
     a = np.dot(x, w)

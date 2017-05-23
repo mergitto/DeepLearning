@@ -27,10 +27,14 @@ class Momentum:
             self.v = {}
             for key, val in params.items():
                 self.v[key] = np.zeros_like(val)
+                # x軸,y軸方向の速度
+                #print(self.v[key])
                 
         for key in params.keys():
             self.v[key] = self.momentum*self.v[key] - self.lr*grads[key]
             params[key] += self.v[key]
+            # 速度を見せる
+            # print(self.v[key])
 
 
 class Nesterov:
@@ -64,14 +68,17 @@ class AdaGrad:
         self.h = None
         
     def update(self, params, grads):
+        count = 0
         if self.h is None:
             self.h = {}
             for key, val in params.items():
                 self.h[key] = np.zeros_like(val)
-            
         for key in params.keys():
             self.h[key] += grads[key] * grads[key]
+            #print('h',key,count,self.h[key])
             params[key] -= self.lr * grads[key] / (np.sqrt(self.h[key]) + 1e-7)
+            #print('w',key,count,params[key])
+            count = count + 1
 
 
 class RMSprop:
