@@ -99,6 +99,7 @@ Batch Normalization,Dropoutなど、どれも欠かせない技術である
 - パラメータ更新にはSGD(確率的勾配降下法)、Momentum,AdaGrad,Adamなどがある
 - 重みの初期値の与え方は正しい学習を行う上で重要である
 - 重みの初期値として、「Xavierの初期値」「Heの初期値」が有効である
+- 活性化関数のReLUを使用する場合は「Heの初期値」、sigmoid,tanhなどのS字カーブの時には「Xavierの初期値」を使用するのが現時点では最も良い
 - Batch Normalizationを用いることで学習を早く進めることができる
 - 過学習を抑制するための正則化の技術としてWeight decayやDropoutがある
 - ハイパーパラメータの探索は良い値が存在する範囲を狭めながら進めるのが効率の良い方法である
