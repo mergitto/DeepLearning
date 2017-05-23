@@ -15,6 +15,7 @@ def f(x, y):
 def df(x, y):
     return x / 10.0, 2.0*y
 
+# 初期位置
 init_pos = (-7.0, 2.0)
 params = {}
 params['x'], params['y'] = init_pos[0], init_pos[1]
@@ -22,16 +23,19 @@ grads = {}
 grads['x'], grads['y'] = 0, 0
 
 
+# SGD, Momentum, AdaGrad, Adamの4つのクラスを切り替えながら学習を行えるようにしている
 optimizers = OrderedDict()
 optimizers["SGD"] = SGD(lr=0.95)
 optimizers["Momentum"] = Momentum(lr=0.1)
 optimizers["AdaGrad"] = AdaGrad(lr=1.5)
 optimizers["Adam"] = Adam(lr=0.3)
 
+# グラフの描画位置を決める
 idx = 1
 
 for key in optimizers:
     optimizer = optimizers[key]
+    print(key)
     x_history = []
     y_history = []
     params['x'], params['y'] = init_pos[0], init_pos[1]
@@ -44,6 +48,8 @@ for key in optimizers:
         optimizer.update(params, grads)
     
 
+    print('x:',x_history)
+    print('y:',y_history)
     x = np.arange(-10, 10, 0.01)
     y = np.arange(-5, 5, 0.01)
     
