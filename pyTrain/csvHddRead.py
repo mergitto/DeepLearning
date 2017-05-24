@@ -5,11 +5,11 @@ from collections import Counter
 import csv
 import pandas as pd
 
-dataset = pd.read_csv("../問題課題一覧_変更履歴.csv")
+dataset = pd.read_csv("./pyDays.csv")
 print(dataset)
 
 
-f = open('../問題課題一覧_変更履歴.csv', 'r')
+f = open('./pyDays.csv', 'r')
 dataReader = csv.reader(f)
 days = np.array( [] )
 

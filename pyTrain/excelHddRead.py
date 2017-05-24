@@ -5,13 +5,13 @@ from collections import Counter
 import csv
 
 
-f = open('../問題課題一覧_変更履歴.csv', 'r')
+f = open('./pyDays.csv', 'r')
 dataReader = csv.reader(f)
 days = np.array( [] )
 
 for gyou,row in enumerate(dataReader):
     for index, data in enumerate(row):
-        if(index == 20 and gyou != 0): # プロジェクト作成日の行でタイトル行じゃないとき
+        if(index == 0 and gyou != 0): # プロジェクト作成日の行でタイトル行じゃないとき
             day = datetime.datetime.strptime(data, '%m/%d/%y')
             if(day < datetime.datetime.strptime('2016-10-01', '%Y-%m-%d')): #2016-10-01までのデータを使用する
                 days = np.append(days, datetime.datetime.strptime(data, '%m/%d/%y'))
