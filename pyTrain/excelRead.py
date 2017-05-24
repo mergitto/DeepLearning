@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 import locale
+from collections import Counter
 
 
 # Excelファイル読み込み
@@ -51,28 +52,44 @@ days = np.array( [] )
 
 for col in range(sheet1.ncols):
     print('--------------------------------')
+    count = 0
     for row in range(sheet1.nrows):
         if(row != 0):
-            print('(',row,':',col,')',xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode))
             # エクセルの日付をpythonで扱えるように変換
-            tstr = xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode)
-            # 例: 01 (1日のこと)
-            day = tstr.strftime('%m%d')
-            #print(day)
-            days = np.append(days, day)
-            # 例: 09(9月のこと)
-            #print(tstr.strftime('%m'))
-            # 例: 2016 9 1
-            #print(tstr.year, tstr.month, tstr.day)
             # excelの日付をpythonで読み込めるように変換 例: 2016-09-01 04:08:50.243000
-            #print(xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode))
-            excelSum1 = np.append(excelSum1, xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode))
-            rows1 = np.append(rows1, row)
+            tstr = xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode)
+            if(tstr < datetime.datetime.strptime('2016-10-01', '%Y-%m-%d')): #2016-10-01までのデータを使用する
+                #print('(',row,':',col,')',xlrd.xldate.xldate_as_datetime(sheet1.cell(row, col).value, book1.datemode))
+                # 例: 01 (1日のこと)
+                day = tstr.strftime('%Y-%m-%d')
+                days = np.append(days, datetime.datetime.strptime(day, '%Y-%m-%d'))
+                # 例: 09(9月のこと)
+                #print(tstr.strftime('%m'))
+                # 例: 2016 9 1
+                #print(tstr.year, tstr.month, tstr.day)
+                #excelSum1 = np.append(excelSum1, tstr)
+                rows1 = np.append(rows1, row)
+                count = count + 1
 
-#print(rows)
-#print(excelSum)
+# 配列の中身を計算する
+words = np.array( [] )
+counts = np.array( [] )
+counter = Counter(days)
+for word, cnt in counter.most_common():
+    words = np.append(words, word)
+    counts = np.append(counts, cnt)
 
-#print(excelSum1)
+datum = np.zeros((0,25))
+datum = np.r_[datum, words.reshape(1, -1)]
+datum = np.r_[datum, counts.reshape(1, -1)]
+print(datum)
+print(np.argsort(datum))
+print(sorted(datum.items()))
+#print(len(days))
+#print(rows1)
 #print(days)
+
 #plt.plot(days, rows1)
+#plt.plot(words, counts)
+#plt.plot(datum[0], datum[1])
 #plt.show()
