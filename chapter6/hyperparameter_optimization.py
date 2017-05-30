@@ -69,6 +69,8 @@ for key, val_acc_list in sorted(results_val.items(), key=lambda x:x[1][-1], reve
     x = np.arange(len(val_acc_list))
     plt.plot(x, val_acc_list)
     plt.plot(x, results_train[key], "--")
+    print(val_acc_list)
+    print(results_train[key])
     i += 1
 
     if i >= graph_draw_num:
