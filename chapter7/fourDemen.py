@@ -6,8 +6,8 @@ import numpy as np
 # im2colを理解する
 print("==================im2col=======================")
 print('入力サイズ（3､3）ストライド1、フィルター（2､2）パディング０')
-x1 = np.random.rand(1, 1, 3, 3)
-col1 = im2col(x1, 2, 2, stride=1, pad=0)
+x1 = np.random.rand(1, 1, 4, 4)
+col1 = im2col(x1, 3, 3, stride=1, pad=0)
 
 
 #print('入力サイズ（7､7）ストライド2、フィルター（3､3）パディング０')
@@ -18,6 +18,13 @@ col1 = im2col(x1, 2, 2, stride=1, pad=0)
 #x1 = np.random.rand(1, 1, 7, 7)
 #col1 = im2col(x1, 3, 3, stride=1, pad=0)
 
+#print("==================paddingについて===================")
+#pad = 2
+#print("x1")
+#print(x1)
+#x1Pad = np.pad(x1, [(0,0), (0,0), (pad, pad), (pad, pad)], 'constant')
+#print("x1Pad")
+#print(x1Pad)
 
 print("==================Pooling=======================")
 # Poolingについて理解する
@@ -47,7 +54,6 @@ class Pooling:
 # 1.入力データを展開する
 # 2.行ごとに最大値を求める
 # 3.適切な出力サイズに整形する
-layer = Pooling(pool_h=2, pool_w=2, stride=2)
-x = np.random.rand(1,2,4,4)
-print(x)
-print(layer.forward(x))
+#layer = Pooling(pool_h=2, pool_w=2, stride=2)
+#x = np.random.rand(1,2,4,4)
+#print(layer.forward(x))
