@@ -52,14 +52,15 @@ def im2col(input_data, filter_h, filter_w, stride=1, pad=0):
     col : 2次元配列
     """
     N, C, H, W = input_data.shape
-    print("N:",N,"C:",C,"H:",H,"W:",W)
+    #print("N:",N,"C:",C,"H:",H,"W:",W)
     out_h = (H + 2*pad - filter_h)//stride + 1
-    print("out_h:",out_h)
+    #print("out_h:",out_h)
     out_w = (W + 2*pad - filter_w)//stride + 1
-    print("out_w:",out_h)
+    #print("out_w:",out_h)
 
     img = np.pad(input_data, [(0,0), (0,0), (pad, pad), (pad, pad)], 'constant')
-    print("img:",img.shape)
+    #print("img.shape:",img.shape)
+    #print("img:",img)
     col = np.zeros((N, C, filter_h, filter_w, out_h, out_w))
 
     for y in range(filter_h):
@@ -68,9 +69,17 @@ def im2col(input_data, filter_h, filter_w, stride=1, pad=0):
             x_max = x + stride*out_w
             col[:, :, y, x, :, :] = img[:, :, y:y_max:stride, x:x_max:stride]
 
-    print('col:',col.shape)
-    col = col.transpose(0, 4, 5, 1, 2, 3).reshape(N*out_h*out_w, -1)
-    print('col:',col.shape)
+    #print('col.shape:',col.shape)
+    #print('col:')
+    #print(col)
+    col = col.transpose(0, 4, 5, 1, 2, 3)
+    #print('col.shape:',col.shape)
+    #print('col.transpose:')
+    #print(col)
+    col = col.reshape(N*out_h*out_w, -1)
+    #print('col.shape:',col.shape)
+    #print('col.reshape:')
+    #print(col)
     return col
 
 

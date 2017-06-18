@@ -12,7 +12,7 @@ class SimpleConvNet:
     """単純なConvNet
 
     conv - relu - pool - affine - relu - affine - softmax
-    
+
     Parameters
     ----------
     input_size : 入力サイズ（MNISTの場合は784）
@@ -23,9 +23,9 @@ class SimpleConvNet:
         'relu'または'he'を指定した場合は「Heの初期値」を設定
         'sigmoid'または'xavier'を指定した場合は「Xavierの初期値」を設定
     """
-    def __init__(self, input_dim=(1, 28, 28), 
+    def __init__(self, input_dim=(1, 28, 28),
                  conv_param={'filter_num':30, 'filter_size':5, 'pad':0, 'stride':1},
-                 hidden_size=100, output_size=10, weight_init_std=0.01):
+                 hidden_size=100, output_size=10, weight_init_std=0.01): # 畳み込み層のハイパーパラメータ
         filter_num = conv_param['filter_num']
         filter_size = conv_param['filter_size']
         filter_pad = conv_param['pad']
@@ -73,16 +73,16 @@ class SimpleConvNet:
 
     def accuracy(self, x, t, batch_size=100):
         if t.ndim != 1 : t = np.argmax(t, axis=1)
-        
+
         acc = 0.0
-        
+
         for i in range(int(x.shape[0] / batch_size)):
             tx = x[i*batch_size:(i+1)*batch_size]
             tt = t[i*batch_size:(i+1)*batch_size]
             y = self.predict(tx)
             y = np.argmax(y, axis=1)
-            acc += np.sum(y == tt) 
-        
+            acc += np.sum(y == tt)
+
         return acc / x.shape[0]
 
     def numerical_gradient(self, x, t):

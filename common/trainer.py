@@ -9,7 +9,7 @@ class Trainer:
     """
     def __init__(self, network, x_train, t_train, x_test, t_test,
                  epochs=20, mini_batch_size=100,
-                 optimizer='SGD', optimizer_param={'lr':0.01}, 
+                 optimizer='SGD', optimizer_param={'lr':0.01},
                  evaluate_sample_num_per_epoch=None, verbose=True):
         self.network = network
         self.verbose = verbose
@@ -27,7 +27,7 @@ class Trainer:
         self.optimizer = optimizer_class_dict[optimizer.lower()](**optimizer_param)
         
         self.train_size = x_train.shape[0]
-        self.iter_per_epoch = max(self.train_size / mini_batch_size, 1)
+        self.iter_per_epoch = max(self.train_size / mini_batch_size, 1) # 例: train_sizeが5000でmini_batch_sizeが100なら50回分繰り返す
         self.max_iter = int(epochs * self.iter_per_epoch)
         self.current_iter = 0
         self.current_epoch = 0
@@ -48,7 +48,7 @@ class Trainer:
         self.train_loss_list.append(loss)
         if self.verbose: print("train loss:" + str(loss))
         
-        if self.current_iter % self.iter_per_epoch == 0:
+        if self.current_iter % self.iter_per_epoch == 0: # 現在の繰り返し回数と総繰り返し回数(1エポック)が同じ=1エポック分の訓練の最後
             self.current_epoch += 1
             
             x_train_sample, t_train_sample = self.x_train, self.t_train
